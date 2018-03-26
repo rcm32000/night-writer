@@ -35,9 +35,9 @@ class TestNightWriter < Minitest::Test
   def test_convert_word
     skip
     nw = NightWriter.new
-    expected = "0-\n"
-               "00\n"
-               "--\n"
+    expected = "0-0-0-0-0-\n"
+               "00-00-0--0\n"
+               "----0-0-0-\n"
     given = nw.convert('hello')
 
     assert_equal expected, given
