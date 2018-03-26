@@ -9,4 +9,10 @@ class TestNightWriter < Minitest::Test
 
     assert_instance_of NightWriter, nw
   end
+
+  def test_convert_one_letter
+    nw = NightWriter.new
+
+    assert_equal "0-\n--\n--", nw.convert('a')
+  end
 end
