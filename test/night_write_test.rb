@@ -15,4 +15,5 @@ class TestNightWriter < Minitest::Test
 
     assert_equal "0-\n--\n--", nw.convert('a')
   end
+  
 end
