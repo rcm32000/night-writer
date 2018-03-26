@@ -1,5 +1,6 @@
 module Braille
-  braille_alphabet = {
+  def braille_alphabet
+    {
       "a" => "0-\n--\n--",
       "b" => "0-\n0-\n--",
       "c" => "00\n--\n--",
@@ -45,4 +46,5 @@ module Braille
       "8" => "-0\n-0\n000-\n00\n--",
       "9" => "-0\n-0\n00-0\n0-\n--"
     }
+  end
 end
