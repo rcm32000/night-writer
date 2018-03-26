@@ -31,7 +31,7 @@ class TestNightWriter < Minitest::Test
   end
 
   def test_convert_word
-    skip
+    # skip
     nw = NightWriter.new
     expected = "0-0-0-0-0-\n"\
                "00-00-0--0\n"\
