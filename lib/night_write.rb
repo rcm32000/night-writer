@@ -1,7 +1,7 @@
-# require_relative  './braille_lib'
+require_relative  './braille_lib'
 class NightWriter
-
-	def convert_a_letter_to_braille
-
+	include Braille
+	def convert(data)
+		data = braille_alphabet
 	end
 end

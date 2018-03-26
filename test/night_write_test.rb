@@ -5,15 +5,15 @@ require 'pry'
 
 class TestNightWriter < Minitest::Test
   def test_class_exists
-    nw = NightWriter.new
+    night_writer = NightWriter.new
 
-    assert_instance_of NightWriter, nw
+    assert_instance_of NightWriter, night_writer
   end
 
   def test_convert_one_letter
-    nw = NightWriter.new
+    night_writer = NightWriter.new
 
-    assert_equal "0-\n--\n--", nw.convert('a')
+    assert_equal "0-\n--\n--", night_writer.convert('a')
   end
-  
+
 end
