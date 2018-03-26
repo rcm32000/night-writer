@@ -49,4 +49,10 @@ class TestNightWriter < Minitest::Test
 
     assert_equal expected, given
   end
+
+  def test_braille_to_english_letter
+    nw = NightWriter.new
+
+    assert_equal 'a', nw.english("0-\n--\n--")
+  end
 end

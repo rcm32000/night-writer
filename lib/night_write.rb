@@ -23,4 +23,15 @@ class NightWriter
     end
 	[@top_row,@middle_row,@bottom_row].join("\n")
   end
+
+  def english(message)
+    @top_row = ""
+    @middle_row = ""
+    @bottom_row = ""
+    @top_row << message.split("\n")[0]
+    @middle_row << message.split("\n")[1]
+    @bottom_row << message.split("\n")[1]
+    letter = [@top_row,@middle_row,@bottom_row].join("\n")
+    braille_alphabet.key(letter)
+  end
 end
