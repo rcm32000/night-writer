@@ -59,8 +59,8 @@ class TestNightWriter < Minitest::Test
   def test_braille_to_english_word
     night_write = NightWriter.new
     expected = night_write.english("0-0-0-0-0---0-0-0-0-0-\n"\
-                          "00-00-0--0--00-00-0--0\n"\
-                          "----0-0-0-------0-0-0-")
+                                                      "00-00-0--0--00-00-0--0\n"\
+                                                      "----0-0-0-------0-0-0-")
     given =  'hello hello'
 
     assert_equal expected, given
@@ -72,5 +72,15 @@ class TestNightWriter < Minitest::Test
       expected = "--0-\n----\n-0--"
 
       assert_equal expected, given
+  end
+
+  def test_braille_sentence_with_caps
+    night_write = NightWriter.new
+    expected =  "--0-0-0-0-0---0-0-0-0-0-\n"\
+                "--00-00-0--0--00-00-0--0\n"\
+                "-0----0-0-0-------0-0-0-"
+    given = night_write.braille('Hello hello')
+
+    assert_equal expected, given
   end
 end
