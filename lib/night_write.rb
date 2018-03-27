@@ -12,14 +12,21 @@ class NightWriter
 	@bottom_row = ""
   end
 
-  def convert(message)
+  def braille(message)
 	  @top_row = ""
   	@middle_row = ""
   	@bottom_row = ""
     message.chars.map do |character|
-     @top_row << braille_alphabet[character].split("\n")[0]
-	 @middle_row << braille_alphabet[character].split("\n")[1]
-	 @bottom_row << braille_alphabet[character].split("\n")[2]
+        # binding.pry
+        if (character == character.upcase) && (('a'..'z').to_a.include?(character.downcase))
+            @top_row << '--'
+            @middle_row << '--'
+            @bottom_row << '-0'
+        end
+        # binding.pry
+     @top_row << braille_alphabet[character.downcase].split("\n")[0]
+	 @middle_row << braille_alphabet[character.downcase].split("\n")[1]
+	 @bottom_row << braille_alphabet[character.downcase].split("\n")[2]
     end
 	[@top_row,@middle_row,@bottom_row].join("\n")
   end

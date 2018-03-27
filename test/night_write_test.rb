@@ -4,65 +4,73 @@ require './lib/night_write'
 require 'pry'
 
 class TestNightWriter < Minitest::Test
-  # def test_class_exists
-  #   nw = NightWriter.new
-  #
-  #   assert_instance_of NightWriter, nw
-  # end
-  #
-  # def test_convert_one_letter
-  #   nw = NightWriter.new
-  #
-  #   assert_equal "0-\n--\n--", nw.convert('a')
-  # end
-  #
-  # def test_row_creation
-  #   nw = NightWriter.new
-  #
-  #   assert_equal "0-\n--\n--", nw.convert('a')
-  #   assert_equal "0-", nw.top_row
-  #   assert_equal "--", nw.middle_row
-  #   assert_equal "--", nw.bottom_row
-  #
-  #   assert_equal "00\n-0\n0-", nw.convert('n')
-  #   assert_equal "00", nw.top_row
-  #   assert_equal "-0", nw.middle_row
-  #   assert_equal "0-", nw.bottom_row
-  # end
-  #
-  # def test_convert_word
-  #   nw = NightWriter.new
-  #   expected = "0-0-0-0-0-\n"\
-  #              "00-00-0--0\n"\
-  #              "----0-0-0-"
-  #   given = nw.convert('hello')
-  #
-  #   assert_equal expected, given
-  # end
-  #
-  # def test_convert_sentence
-  #   nw = NightWriter.new
-  #   expected =  "0-0-0-0-0---0-0-0-0-0-\n"\
-  #               "00-00-0--0--00-00-0--0\n"\
-  #               "----0-0-0-------0-0-0-"
-  #   given = nw.convert('hello hello')
-  #
-  #   assert_equal expected, given
-  # end
-  #
-  # def test_braille_to_english_letter
-  #   nw = NightWriter.new
-  #
-  #   assert_equal 'a', nw.english("0-\n--\n--")
-  # end
+  def test_class_exists
+    night_write = NightWriter.new
+
+    assert_instance_of NightWriter, night_write
+  end
+
+  def test_braille_one_letter
+    night_write = NightWriter.new
+
+    assert_equal "0-\n--\n--", night_write.braille('a')
+  end
+
+  def test_row_creation
+    night_write = NightWriter.new
+
+    assert_equal "0-\n--\n--", night_write.braille('a')
+    assert_equal "0-", night_write.top_row
+    assert_equal "--", night_write.middle_row
+    assert_equal "--", night_write.bottom_row
+
+    assert_equal "00\n-0\n0-", night_write.braille('n')
+    assert_equal "00", night_write.top_row
+    assert_equal "-0", night_write.middle_row
+    assert_equal "0-", night_write.bottom_row
+  end
+
+  def test_braille_word
+    night_write = NightWriter.new
+    expected = "0-0-0-0-0-\n"\
+               "00-00-0--0\n"\
+               "----0-0-0-"
+    given = night_write.braille('hello')
+
+    assert_equal expected, given
+  end
+
+  def test_braille_sentence
+    night_write = NightWriter.new
+    expected =  "0-0-0-0-0---0-0-0-0-0-\n"\
+                "00-00-0--0--00-00-0--0\n"\
+                "----0-0-0-------0-0-0-"
+    given = night_write.braille('hello hello')
+
+    assert_equal expected, given
+  end
+
+  def test_braille_to_english_letter
+    night_write = NightWriter.new
+
+    assert_equal 'a', night_write.english("0-\n--\n--")
+  end
 
   def test_braille_to_english_word
-    nw = NightWriter.new
-    expected = nw.english("0-0-0-0-0---0-0-0-0-0-\n"\
+    night_write = NightWriter.new
+    expected = night_write.english("0-0-0-0-0---0-0-0-0-0-\n"\
                           "00-00-0--0--00-00-0--0\n"\
                           "----0-0-0-------0-0-0-")
     given =  'hello hello'
 
     assert_equal expected, given
+  end
+
+  def test_english_to_braille_capital_letter
+      night_write = NightWriter.new
+      given = night_write.braille("A")
+      expected = "--0-\n----\n-0--"
+
+      assert_equal expected, given
   end
 end
