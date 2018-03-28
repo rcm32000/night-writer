@@ -6,7 +6,7 @@ class NightWriter
               :middle_row,
               :bottom_row
 
-  def braille(message)
+  def to_braille(message)
 	empty_rows
     message.chars.map do |character|
       character_capitalize?(character)
@@ -17,7 +17,7 @@ class NightWriter
 	[@top_row,@middle_row,@bottom_row].join("\n")
   end
 
-  def english(message)
+  def to_english(message)
     english = ""
     split = message.split("\n")
     until split == ["", "", ""]
