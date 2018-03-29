@@ -8,8 +8,8 @@ file.close
 
 def braille_message(message)
   split = message.split("\n")
-  new_message = ""
-  until split == ["", "", ""]
+  new_message = ''
+  until split == ['', '', '']
     new_message << "#{split[0].slice!(0..78)}\n"
     new_message << "#{split[1].slice!(0..78)}\n"
     new_message << "#{split[2].slice!(0..78)}\n\n"
@@ -18,19 +18,25 @@ def braille_message(message)
 end
 
 def convert_braille_file(message)
-  braille_string = ""
+  top_row = ''
+  middle_row = ''
+  bottom_row = ''
   until message == []
-    braille_string << message.delete_at(0)
-    braille_string << message.delete_at(1)
-    braille_string << message.delete_at(2)
-    message.delete_at(3)
-    # binding.pry
+    top_row << message.delete_at(0).chomp
+    middle_row << message.delete_at(0).chomp
+    bottom_row << message.delete_at(0).chomp
+    message.delete_at(0)
   end
-  braille_string
+  [top_row, middle_row, bottom_row].join("\n")
 end
 
 def english_message(message)
-
+  old_message = message.dup
+  new_message = ''
+  until old_message == ''
+    new_message << "#{old_message.slice!(0..38)}\n"
+  end
+  new_message
 end
 
 file.close
@@ -40,11 +46,11 @@ if message.start_with?('0', '.')
   File.open('./lib/message.txt').each { |line| lines << line }
   braille_string = convert_braille_file(lines)
   new_message = night_write.to_english(braille_string)
-  file = File.new('./lib/english.txt', 'w')
-  file.puts(english_message(new_message))
-  file.close
+  english_file = File.new('./lib/original_message.txt', 'w')
+  english_file.puts(english_message(new_message))
+  english_file.close
   puts  "Created #{File.basename(file)} containing "\
-        "#{night_write.to_english(message).length} characters"
+        "#{new_message.length} characters"
 else
   new_message = night_write.to_braille(message)
   braille_file = File.new('./lib/braille.txt', 'w')
@@ -53,7 +59,3 @@ else
   puts  "Created #{File.basename(braille_file)} containing "\
         "#{night_write.to_braille(message).length} characters"
 end
-
-file = File.new('./lib/original_message.txt', 'w')
-file.puts message
-file.close

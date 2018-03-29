@@ -56,6 +56,12 @@ class TestNightWriter < Minitest::Test
     assert_equal 'a', night_write.to_english("0.\n..\n..")
   end
 
+  def test_braille_to_english_capital_letter
+    night_write = NightWriter.new
+
+    assert_equal 'A', night_write.to_english("..0.\n....\n.0..")
+  end
+
   def test_braille_to_english_word
     night_write = NightWriter.new
     expected = night_write.to_english("0.0.0.0.0...0.0.0.0.0.\n"\

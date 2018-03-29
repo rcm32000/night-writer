@@ -26,7 +26,16 @@ class NightWriter
       @middle_row << split[1].slice!(0,2)
       @bottom_row << split[2].slice!(0,2)
       letter = [@top_row,@middle_row,@bottom_row].join("\n")
-      english << braille_alphabet.key(letter)
+      if braille_alphabet.key(letter) == 'capital'
+        empty_rows
+        @top_row << split[0].slice!(0,2)
+        @middle_row << split[1].slice!(0,2)
+        @bottom_row << split[2].slice!(0,2)
+        letter = [@top_row,@middle_row,@bottom_row].join("\n")
+        english << braille_alphabet.key(letter).upcase
+      else
+        english << braille_alphabet.key(letter)
+      end
     end
     english
   end
