@@ -89,4 +89,34 @@ class TestNightWriter < Minitest::Test
 
     assert_equal expected, given
   end
+
+  def test_single_number_english_to_braille
+    night_write = NightWriter.new
+    expected = ".00.\n.0..\n00.."
+    given = night_write.to_braille('1')
+
+    assert_equal expected, given
+  end
+
+  def test_number_in_sentence_to_braille
+    night_write = NightWriter.new
+    expected =  "..0.0.0.0.0...0.0.0.0.0..00.\n"\
+                "..00.00.0..0..00.00.0..0.0..\n"\
+                '.0....0.0.0.......0.0.0.00..'
+    given = night_write.to_braille('Hello hello1')
+
+    assert_equal expected, given
+  end
+
+  def test_number_in_braille_to_english
+    night_write = NightWriter.new
+
+    assert_equal '1', night_write.to_english(".00.\n.0..\n00..")
+  end
+
+  def test_multiple_number_in_braille_to_english
+    night_write = NightWriter.new
+
+    assert_equal '12', night_write.to_english(".00..00.\n.0...00.\n00..00..")
+  end
 end
