@@ -42,7 +42,7 @@ class NightWriter
 
   def character_capitalize?(character)
     if (character == character.upcase) &&
-       ('a'..'z').to_a.include?(character.downcase)
+      ('a'..'z').to_a.include?(character.downcase)
       @top_row << '..'
       @middle_row << '..'
       @bottom_row << '.0'
